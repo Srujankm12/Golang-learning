@@ -37,4 +37,9 @@ func main() {
 	sort.Ints(highscores)
 	fmt.Println("", highscores)
 
+	var fruits = []string{"apple", "banana", "mango", "orange", "grapes", "pineapple"}
+	var index = 3
+	fruits = append(fruits[:index], fruits[index+1:]...)
+	fmt.Println("", fruits)
+
 }
