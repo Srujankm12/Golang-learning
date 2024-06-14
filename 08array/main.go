@@ -21,4 +21,9 @@ func main() {
 	names[4] = "hhh"
 	fmt.Println("", len(names))
 
+	var balls [3]int
+	balls = [3]int{1, 2, 3}
+	fmt.Println("", balls)
+	fmt.Println("", len(balls))
+
 }
