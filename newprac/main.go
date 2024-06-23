@@ -1,48 +1,50 @@
 package main
 
 import (
-	//"log"
 	"context"
 	"log"
 	"net/http"
+	"newprac/handlers"
 	"os"
 	"os/signal"
-	"praser/handlers"
 	"time"
 )
 
 func main() {
-	l := log.New(os.Stdout, "product-api", log.LstdFlags)
+
+	l := log.New(os.Stdout, "prouct-api", log.LstdFlags)
 	hh := handlers.NewHello(l)
 	gb := handlers.NewGoodbye(l)
 
 	sm := http.NewServeMux()
-	sm.Handle("/", hh)
 	sm.Handle("/goodbye", gb)
+	sm.Handle("/", hh)
 
-	s := http.Server{
-		Addr:         ":8001",
+	s := &http.Server{
+
+		Addr:         ":8010",
 		Handler:      sm,
 		IdleTimeout:  120 * time.Second,
 		ReadTimeout:  1 * time.Second,
 		WriteTimeout: 1 * time.Second,
 	}
-
-	//http.ListenAndServe(":8001", sm)
 	go func() {
+
 		err := s.ListenAndServe()
+
 		if err != nil {
 			l.Fatal(err)
 		}
-
 	}()
+
 	sigcha := make(chan os.Signal)
 	signal.Notify(sigcha, os.Interrupt)
 	signal.Notify(sigcha, os.Kill)
 
 	sig := <-sigcha
-	l.Println("Recived terminate ,gracefull shutdown", sig)
+	l.Println("recived terminate ,graceful shutdown", sig)
 
-	tc, _ := context.WithTimeout(context.Background(), 30*time.Second)
+	tc, _ := context.WithTimeout(context.Background(), 120*time.Second)
 	s.Shutdown(tc)
+
 }
