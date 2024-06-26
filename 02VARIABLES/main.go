@@ -6,17 +6,18 @@ import "fmt"
 
 func main() {
 
-	var username string = "Srujan"
-	fmt.Println("The name of Student is ", username)
+	var username = "SRUjan"
+
+	fmt.Println("THe string is ", username)
 	fmt.Printf("The variables of the type is: %T\n", username)
 
-	var age int = 21
-	fmt.Println("The age of the student is ", age)
-	fmt.Printf("The variables of the type is:%T\n", age)
+	var age = 90
+	fmt.Println("the kiran age is", age)
+	fmt.Printf("the variable is of type is :%T\n", age)
 
-	var isLoggedin bool = false
-	fmt.Println(isLoggedin)
-	fmt.Printf("The variables of the type is : %T\n", isLoggedin)
+	var kk bool = false
+	fmt.Println("the bool is ", kk)
+	fmt.Printf("The variables of the type is : %T\n", kk)
 
 	var smallvalue uint8 = 255
 	fmt.Println("The age of the student is ", smallvalue)
